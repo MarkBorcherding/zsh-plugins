@@ -16,7 +16,7 @@ virtualenv_prompt_info(){
   if [[ -n "$VIRTUAL_ENV" ]]; then
     # Strip out the path and just leave the env name
     venv="${VIRTUAL_ENV##*/}"
-    echo -e " %{$terminfo[bold]$fg[black]%}working on %{$FG[118]%}${venv}%{$reset_color%}"
+    echo -e " %{$terminfo[bold]$fg[black]%}working on %{$FG[64]%}${venv}%{$reset_color%}"
   fi
 }
 
