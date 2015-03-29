@@ -20,7 +20,20 @@ virtualenv_prompt_info(){
   fi
 }
 
+local git_mode_prompt='$(git_mode)'
+git_mode() {
+  local repo_path=$(git rev-parse --git-dir 2>/dev/null)
+
+  if [[ -e "$repo_path/BISECT_LOG" ]]; then
+    echo -e " %{$fg[yellow]%}bisecting"
+  elif [[ -e "$repo_path/MERGE_HEAD" ]]; then
+    echo -e " %{$fg[yellow]%}mergeing"
+  elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
+    echo -e " %{$fg[yellow]%}rebasing"
+  fi
+}
+
 local return_code='%{$terminfo[bold]%}%(?,%{$fg[black]%},%{$fg[red]%})'
 
-PROMPT="$user_prompt $host_prompt ${pwd_prompt}${git_branch}${virtualenv_prompt}
+PROMPT="$user_prompt $host_prompt ${pwd_prompt}${git_branch}${git_mode_prompt}${virtualenv_prompt}
 ${return_code}$ %{$reset_color%} "
