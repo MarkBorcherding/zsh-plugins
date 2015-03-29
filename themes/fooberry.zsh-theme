@@ -7,10 +7,10 @@ local pwd_prompt='%{$terminfo[bold]$fg[black]%}in %{$fg[green]%}%~%{$reset_color
 local git_branch='$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$terminfo[bold]$fg[black]%}on %{$fg[magenta]%}%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$FG[088]%}↓"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$FG[214]%}↑"
-ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$FG[226]%}⑂"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[088]%}⊛"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$FG[088]%}▼"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$FG[214]%}▲"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$FG[226]%}⧓"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}x"
 ZSH_THEME_GIT_PROMPT_CLEAN="⊙"
 
 
