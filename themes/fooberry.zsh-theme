@@ -11,7 +11,20 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$FG[088]%}▼"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$FG[214]%}▲"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$FG[226]%}⧓"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}x"
-ZSH_THEME_GIT_PROMPT_CLEAN="⊙"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+local git_mode_prompt='$(git_mode)'
+git_mode() {
+  local repo_path=$(git rev-parse --git-dir 2>/dev/null)
+
+  if [[ -e "$repo_path/BISECT_LOG" ]]; then
+    echo -e " %{$fg[yellow]%}bisecting"
+  elif [[ -e "$repo_path/MERGE_HEAD" ]]; then
+    echo -e " %{$fg[yellow]%}mergeing"
+  elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
+    echo -e " %{$fg[yellow]%}rebasing"
+  fi
+}
 
 
 local ruby_version="$(ruby -v | awk '{ print $1 " " $2 }')"
@@ -26,18 +39,6 @@ virtualenv_prompt_info(){
   fi
 }
 
-local git_mode_prompt='$(git_mode)'
-git_mode() {
-  local repo_path=$(git rev-parse --git-dir 2>/dev/null)
-
-  if [[ -e "$repo_path/BISECT_LOG" ]]; then
-    echo -e " %{$fg[yellow]%}bisecting"
-  elif [[ -e "$repo_path/MERGE_HEAD" ]]; then
-    echo -e " %{$fg[yellow]%}mergeing"
-  elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
-    echo -e " %{$fg[yellow]%}rebasing"
-  fi
-}
 
 local return_code='%{$terminfo[bold]%}%(?,%{$fg[black]%},%{$fg[red]%})'
 
