@@ -26,9 +26,11 @@ git_mode() {
   fi
 }
 
-
-local ruby_version="$(ruby -v | awk '{ print $1 " " $2 }')"
-local ruby_prompt='%{$terminfo[bold]$fg[black]%}w/ %{$fg[red]%}${ruby_version}%{$reset_color%}'
+ruby_prompt_info(){
+  local ruby_version="$(ruby -v | cut -f 2 -d ' ')"
+  echo -e " %{$terminfo[bold]$fg[black]%}w/ %{$fg[red]%}${ruby_version}%{$reset_color%}"
+}
+local ruby_prompt='$(ruby_prompt_info)'
 
 local virtualenv_prompt='$(virtualenv_prompt_info)'
 virtualenv_prompt_info(){
@@ -43,5 +45,5 @@ virtualenv_prompt_info(){
 local return_code='%{$terminfo[bold]%}%(?,%{$fg[black]%},%{$fg[red]%})'
 
 
-PROMPT="$user_prompt $host_prompt ${pwd_prompt}${git_branch}${git_mode_prompt}${virtualenv_prompt}
+PROMPT="$user_prompt $host_prompt ${pwd_prompt}${git_branch}${git_mode_prompt}${virtualenv_prompt}${ruby_prompt}
 ${return_code}$ %{$reset_color%} "
