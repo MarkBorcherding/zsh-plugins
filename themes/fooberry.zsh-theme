@@ -5,7 +5,7 @@ local host_prompt='%{$terminfo[bold]$fg[black]%}at %{$FG[208]%}%m%{$reset_color%
 local pwd_prompt='%{$terminfo[bold]$fg[black]%}in %{$fg[green]%}%~%{$reset_color%}'
 
 local git_branch='$(git_prompt_info)$(git_remote_status)%{$reset_color%}'
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$terminfo[bold]$fg[black]%}on %{$fg[magenta]%}%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$terminfo[bold]$fg[black]%}on %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$FG[088]%}▼"
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$FG[214]%}▲"
@@ -41,9 +41,7 @@ virtualenv_prompt_info(){
   fi
 }
 
-
 local return_code='%{$terminfo[bold]%}%(?,%{$fg[black]%},%{$fg[red]%})'
-
 
 PROMPT="$user_prompt $host_prompt ${pwd_prompt}${git_branch}${git_mode_prompt}${virtualenv_prompt}${ruby_prompt}
 ${return_code}$ %{$reset_color%} "
