@@ -48,5 +48,5 @@ PROMPT+='$(personal_prompt_things)'
 local return_code='%{$terminfo[bold]%}%(?,%{$fg[black]%},%{$fg[red]%})'
 
 PROMPT+="
-${return_code}$ $reset_color"
+${return_code}$ %{$reset_color%}"
 
