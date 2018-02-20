@@ -28,7 +28,7 @@ git_mode() {
 PROMPT+="${git_branch}${git_mode}"
 
 ruby_prompt_info(){
-  local ruby_version="r$(ruby -v | cut -f 2 -d ' ' | sed s/p.*//)"
+  local ruby_version="r$(ruby -v | cut -f 2 -d ' ' | sed 's/p.*//')"
   echo -e "%{$terminfo[bold]$fg[black]%}w/ %{$fg[red]%}${ruby_version}%{$reset_color%}"
 }
 [[ "${ZSH_THEME_RUBY_VERSION:-Y}" = "Y" ]]  && PROMPT+=' $(ruby_prompt_info)'
